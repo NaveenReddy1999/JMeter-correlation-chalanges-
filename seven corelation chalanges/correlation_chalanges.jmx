@@ -1,0 +1,771 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <GenericController guiclass="LogicControllerGui" testclass="GenericController" testname="Simple Controller" enabled="true"/>
+        <hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 02__Eg_MultipleValues_Extraction_with_Ignoring_Middle_Values" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">GET https://jpetstore.cfapps.io/login
+
+GET data:
+
+
+Cookie Data:
+JSESSIONID=15494C8BB91B5E5893F98E046DC9F813; __VCAP_ID__=4fe0b1bb-e6d0-4ffc-5583-5aec</stringProp>
+            <stringProp name="RESPONSE_DATA">{&quot;domain&quot;: &quot;&quot;, &quot;localization&quot;: &quot;de-DE&quot;, &quot;gateWay&quot;: &quot;http://public-gateway-cloud-abc.com&quot;, &quot;identityProvider&quot;: &quot;http://public-gateway-cloud-abc.com/api/v1/identity-provider&quot;, &quot;customerDNS&quot;: &quot;General&quot;, &quot;customerName&quot;: &quot;jojo&quot;, &quot;staticCacheService&quot;: &quot;static-cache-service-cloud-abc.com&quot;, id&quot;:&quot;20476939-8465-42f4-adcd-61455d9d830e&quot;, &quot;parentId&quot;:null, &quot;customerId&quot;:&quot;1234567&quot;, &quot;orderId&quot;: &quot;7bc1779f-735f-410a-ad6f-4f7455d41312&quot;, &quot;licenseId&quot;:&quot;73fb4c45-771d-4cd1-a6d6-c54406407c78&quot;, &quot;name&quot;:&quot;HP LoadRunner License&quot;, &quot;status&quot;:&quot;Active&quot;, &quot;childrenCount&quot;:0, &quot;licensed&quot;:true, &quot;purchaseDate&quot;:1511266812000, &quot;expirationDate&quot;:1542802812000}</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Ignoring_Middle_Values" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">AllValues</stringProp>
+              <stringProp name="RegexExtractor.regex">&quot;customerName&quot;: &quot;(.*?)&quot;, &quot;staticCacheService&quot;: &quot;static-cache-service-cloud-abc.com&quot;, id&quot;:&quot;(.*?)&quot;, &quot;parentId&quot;:null, &quot;customerId&quot;:&quot;(.*?)&quot;, &quot;orderId&quot;: &quot;(.*?)&quot;, &quot;licenseId&quot;:&quot;(.*?)&quot;, &quot;name&quot;:&quot;HP LoadRunner License&quot;, &quot;status&quot;:&quot;Active&quot;, &quot;childrenCount&quot;:0, &quot;licensed&quot;:true, &quot;purchaseDate&quot;:(.*?), &quot;expirationDate&quot;:(.*?)}</stringProp>
+              <stringProp name="RegexExtractor.template">$1$$2$$3$$4$$5$$6$</stringProp>
+              <stringProp name="RegexExtractor.default">AllValues_NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Ignoring_Middle_Values" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">AllValues</stringProp>
+              <stringProp name="RegexExtractor.regex">id&quot;:&quot;(.*?)&quot;.*&quot;customerId&quot;:&quot;(.*?)&quot;, &quot;orderId&quot;: &quot;(.*?)&quot;, &quot;licenseId&quot;:&quot;(.*?)&quot;.*&quot;purchaseDate&quot;:(.*?), &quot;expirationDate&quot;:(.*?)}</stringProp>
+              <stringProp name="RegexExtractor.template">$1$$2$$3$$4$$5$$6$</stringProp>
+              <stringProp name="RegexExtractor.default">AllValues_NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="neckit" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname"></stringProp>
+              <stringProp name="RegexExtractor.regex"></stringProp>
+              <stringProp name="RegexExtractor.template"></stringProp>
+              <stringProp name="RegexExtractor.default"></stringProp>
+              <stringProp name="RegexExtractor.match_number"></stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case03__Eg_Escape_Character" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">GET https://jpetstore.cfapps.io/login
+
+GET data:
+
+
+Cookie Data:
+JSESSIONID=15494C8BB91B5E5893F98E046DC9F813; __VCAP_ID__=4fe0b1bb-e6d0-4ffc-5583-5aec</stringProp>
+            <stringProp name="RESPONSE_DATA">id&quot;:$&quot;20476939-8465-42f4-adcd-61455d9d830e&quot;,</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Variable_Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">Variable</stringProp>
+              <stringProp name="RegexExtractor.regex">id&quot;:\$&quot;(.*?)&quot;,</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">Variable_NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case03.1___Escape_Character" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">Dummy Sampler used to simulate requests and responses
+without actual network activity. This helps debugging tests.</stringProp>
+            <stringProp name="RESPONSE_DATA">nonce=JdHf1_8N-EdjZsERyIbqCIo4PTTuOU9RtrMFjRDfDfEAc\x26acr_values</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Escape_Character" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">Escape_Character</stringProp>
+              <stringProp name="RegexExtractor.regex">nonce=(.+?)\\x26acr_values</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">Escape_Character</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 04__Eg_Extracting_from_NewLine_1" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">GET https://jpetstore.cfapps.io/login
+
+GET data:
+
+
+Cookie Data:
+JSESSIONID=15494C8BB91B5E5893F98E046DC9F813; __VCAP_ID__=4fe0b1bb-e6d0-4ffc-5583-5aec</stringProp>
+            <stringProp name="RESPONSE_DATA">&lt;script&gt;
+        A431631A-8E3C-4DBD-9F34-60A46A16D20E
+&lt;/script&gt;</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Variable_Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">Variable</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;script&gt;\s+(.*?)\s+&lt;/script&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">Variable_NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Variable_Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">Variable</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;script&gt;\s+([0-9A-Z-]+)+\s+&lt;\/script&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">Variable_NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 04.1__Eg_Extracting_from_NewLine_2" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">GET https://jpetstore.cfapps.io/login
+
+GET data:
+
+
+Cookie Data:
+JSESSIONID=15494C8BB91B5E5893F98E046DC9F813; __VCAP_ID__=4fe0b1bb-e6d0-4ffc-5583-5aec</stringProp>
+            <stringProp name="RESPONSE_DATA">&lt;!--
+
+       Copyright 2016-2017 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+--&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!--
+
+       Copyright 2016-2017 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+--&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;JPetStore Demo&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    
+    &lt;link rel=&quot;StyleSheet&quot; href=&quot;/css/jpetstore.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div id=&quot;Header&quot;&gt;
+
+    &lt;div id=&quot;Logo&quot;&gt;
+        &lt;div id=&quot;LogoContent&quot;&gt;
+            &lt;a href=&quot;/catalog&quot;&gt;
+                &lt;img src=&quot;/images/logo-topbar.gif&quot; /&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+
+    &lt;div id=&quot;Menu&quot;&gt;
+        &lt;div id=&quot;MenuContent&quot;&gt;
+            &lt;a href=&quot;/cart&quot;&gt;
+                &lt;img align=&quot;middle&quot; name=&quot;img_cart&quot; src=&quot;/images/cart.gif&quot; /&gt;
+            &lt;/a&gt;
+            &lt;img align=&quot;middle&quot; src=&quot;/images/separator.gif&quot; /&gt;
+            &lt;a href=&quot;/login&quot;&gt;
+                Sign In
+            &lt;/a&gt;
+            
+            
+            
+            &lt;img align=&quot;middle&quot; src=&quot;/images/separator.gif&quot; /&gt;
+            &lt;a href=&quot;/help.html&quot; target=&quot;help&quot;&gt;
+                ?
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;Search&quot;&gt;
+        &lt;div id=&quot;SearchContent&quot;&gt;
+            &lt;form action=&quot;/catalog/products&quot; method=&quot;get&quot;&gt;
+                &lt;input name=&quot;keywords&quot; size=&quot;14&quot; value=&quot;&quot;/&gt;
+                &lt;input id=&quot;searchProducts&quot; type=&quot;submit&quot; value=&quot;Search&quot; /&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;QuickLinks&quot;&gt;
+        &lt;a href=&quot;/catalog/categories/FISH&quot;&gt;
+            &lt;img src=&quot;/images/sm_fish.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/DOGS&quot;&gt;
+            &lt;img src=&quot;/images/sm_dogs.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/REPTILES&quot;&gt;
+            &lt;img src=&quot;/images/sm_reptiles.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/CATS&quot;&gt;
+            &lt;img src=&quot;/images/sm_cats.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/BIRDS&quot;&gt;
+            &lt;img src=&quot;/images/sm_birds.gif&quot; /&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;Content&quot;&gt;
+
+    
+
+    &lt;section&gt;
+
+        &lt;div id=&quot;BackLink&quot;&gt;
+            &lt;a href=&quot;/catalog&quot;&gt;Return to Main Menu&lt;/a&gt;
+        &lt;/div&gt;
+
+        &lt;div id=&quot;Catalog&quot;&gt;
+
+            &lt;div id=&quot;Cart&quot;&gt;
+
+                &lt;h2&gt;Shopping Cart&lt;/h2&gt;
+
+                &lt;form action=&quot;/cart&quot; method=&quot;post&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;3e49aac5-36ef-4931-ad05-f67181f34f06&quot;/&gt;
+                    &lt;table&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;Item ID&lt;/th&gt;
+                            &lt;th&gt;Product ID&lt;/th&gt;
+                            &lt;th&gt;Description&lt;/th&gt;
+                            &lt;th&gt;In Stock?&lt;/th&gt;
+                            &lt;th&gt;Quantity&lt;/th&gt;
+                            &lt;th&gt;List Price&lt;/th&gt;
+                            &lt;th&gt;Total Cost&lt;/th&gt;
+                            &lt;th&gt;&amp;nbsp;&lt;/th&gt;
+                        &lt;/tr&gt;
+
+                        
+
+                        &lt;tr&gt;
+                            &lt;td&gt;
+                                &lt;a href=&quot;/catalog/items/EST-18&quot;&gt;
+                                    &lt;span&gt;EST-18&lt;/span&gt;
+                                &lt;/a&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;span&gt;AV-CB-01&lt;/span&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;span&gt;Adult Male&lt;/span&gt;
+                                &lt;span&gt;&lt;/span&gt;
+                                &lt;span&gt;&lt;/span&gt;
+                                &lt;span&gt;&lt;/span&gt;
+                                &lt;span&gt;&lt;/span&gt;
+                                &lt;span&gt;Amazon Parrot&lt;/span&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;span&gt;true&lt;/span&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;input type=&quot;hidden&quot; value=&quot;EST-18&quot;/&gt;
+                                &lt;input id=&quot;lines0.quantity&quot; name=&quot;lines[0].quantity&quot; value=&quot;1&quot;/&gt;
+                                
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                $&lt;span&gt;193.50&lt;/span&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                $&lt;span&gt;193.50&lt;/span&gt;
+                            &lt;/td&gt;
+                            &lt;td&gt;
+                                &lt;a class=&quot;Button&quot; href=&quot;/cart?remove&amp;amp;itemId=EST-18&quot;&gt;Remove&lt;/a&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                        &lt;tr&gt;
+                            &lt;td colspan=&quot;7&quot;&gt;
+                                Sub Total:
+                                $&lt;span&gt;193.50&lt;/span&gt;
+                                &lt;input type=&quot;submit&quot; name=&quot;update&quot; value=&quot;Update Cart&quot;/&gt;
+                            &lt;td&gt;&amp;nbsp;&lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/table&gt;
+
+                &lt;/form&gt;
+
+                &lt;a href=&quot;/my/orders/create?form&quot; class=&quot;Button&quot;&gt;
+                    Proceed to Checkout
+                &lt;/a&gt;
+
+            &lt;/div&gt;
+
+            &lt;div id=&quot;MyList&quot;&gt;
+                
+            &lt;/div&gt;
+
+            &lt;div id=&quot;Separator&quot;&gt;&amp;nbsp;&lt;/div&gt;
+        &lt;/div&gt;
+
+
+    &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;Footer&quot;&gt;
+
+    &lt;div id=&quot;PoweredBy&quot;&gt;
+        &lt;a href=&quot;http://kazuki43zoo.com&quot; target=&quot;homepage&quot;&gt;
+            kazuki43zoo.com
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;Banner&quot;&gt;
+        
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Variable_Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">Variable</stringProp>
+              <stringProp name="RegexExtractor.regex">Sub Total:\s+\$&lt;span&gt;(.*?)&lt;/span&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">Variable_NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 05__Eg_Value with Left Boundary but No Right Boundary" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">Authorization: JI_ueHRWHuY_AQ358UIiFKgWTdYl22Uh</stringProp>
+            <stringProp name="RESPONSE_DATA">Authorization: JI_ueHRWHuY_AQ358UIiFKgWTdYl22Uh</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+            <stringProp name="TestPlan.comments">Here, a value with left boundary but has no right boundary.</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData</stringProp>
+              <stringProp name="RegexExtractor.regex">Authorization: (.*)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData</stringProp>
+              <stringProp name="RegexExtractor.regex">Authorization: (\s+)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 06__Eg_Value with both Varying Left &amp; Right Boundary" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">GET https://jpetstore.cfapps.io/login
+
+GET data:
+
+
+Cookie Data:
+JSESSIONID=15494C8BB91B5E5893F98E046DC9F813; __VCAP_ID__=4fe0b1bb-e6d0-4ffc-5583-5aec</stringProp>
+            <stringProp name="RESPONSE_DATA">&lt;span&gt;${__RandomString(5,abcdefghijklmnopqrstvuwxyz,RandVariable)}${__Random(111,999,RandNum)}${__RandomString(5,abcdefghijklmnopqrstvuwxyz,RandVariable)}&lt;/span&gt;</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;span&gt;.*?([0-9]+).*?&lt;/span&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="false">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData</stringProp>
+              <stringProp name="RegexExtractor.regex">&lt;span&gt;\D+(\d+)\D+&lt;/span&gt;</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 07__Eg_Single Value in Response with No Left &amp; No Right Boundary" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA">JI_ueHRWHuY_AQ358UIiFKgWTdYl22Uh</stringProp>
+            <stringProp name="RESPONSE_DATA">JI_ueHRWHuY_AQ358UIiFKgWTdYl22Uh</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+            <stringProp name="TestPlan.comments">Here, single value in response with no left &amp; no right boundary.</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData</stringProp>
+              <stringProp name="RegexExtractor.regex">(?s)(^.*)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;SingleValue&quot;, prev.getResponseDataAsString());
+
+
+//JI_ueHRWHuY_AQ358UIiFKgWTdYl22Uh//
+
+//vars.put(&quot;JI_ueHRWHuY_AQ358UIiFKgWTdYl22Uh&quot;, prev.getResponseDataAsString());
+
+//like this way pass tha var//</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+          <kg.apc.jmeter.samplers.DummySampler guiclass="kg.apc.jmeter.samplers.DummySamplerGui" testclass="kg.apc.jmeter.samplers.DummySampler" testname="case 08__Eg_Extract Complete Response" enabled="false">
+            <boolProp name="WAITING">true</boolProp>
+            <boolProp name="SUCCESFULL">true</boolProp>
+            <stringProp name="RESPONSE_CODE">200</stringProp>
+            <stringProp name="RESPONSE_MESSAGE">OK</stringProp>
+            <stringProp name="REQUEST_DATA"></stringProp>
+            <stringProp name="RESPONSE_DATA">&lt;!--
+
+       Copyright 2016-2017 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+--&gt;
+&lt;!DOCTYPE html&gt;
+&lt;!--
+
+       Copyright 2016-2017 the original author or authors.
+
+       Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+
+--&gt;
+&lt;html xmlns=&quot;http://www.w3.org/1999/xhtml&quot;&gt;
+&lt;head&gt;
+    &lt;title&gt;JPetStore Demo&lt;/title&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    
+    &lt;link rel=&quot;StyleSheet&quot; href=&quot;/css/jpetstore.css&quot; type=&quot;text/css&quot; media=&quot;screen&quot; /&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+
+&lt;div id=&quot;Header&quot;&gt;
+
+    &lt;div id=&quot;Logo&quot;&gt;
+        &lt;div id=&quot;LogoContent&quot;&gt;
+            &lt;a href=&quot;/catalog&quot;&gt;
+                &lt;img src=&quot;/images/logo-topbar.gif&quot; /&gt;
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+
+    &lt;div id=&quot;Menu&quot;&gt;
+        &lt;div id=&quot;MenuContent&quot;&gt;
+            &lt;a href=&quot;/cart&quot;&gt;
+                &lt;img align=&quot;middle&quot; name=&quot;img_cart&quot; src=&quot;/images/cart.gif&quot; /&gt;
+            &lt;/a&gt;
+            &lt;img align=&quot;middle&quot; src=&quot;/images/separator.gif&quot; /&gt;
+            &lt;a href=&quot;/login&quot;&gt;
+                Sign In
+            &lt;/a&gt;
+            
+            
+            
+            &lt;img align=&quot;middle&quot; src=&quot;/images/separator.gif&quot; /&gt;
+            &lt;a href=&quot;/help.html&quot; target=&quot;help&quot;&gt;
+                ?
+            &lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;Search&quot;&gt;
+        &lt;div id=&quot;SearchContent&quot;&gt;
+            &lt;form action=&quot;/catalog/products&quot; method=&quot;get&quot;&gt;
+                &lt;input name=&quot;keywords&quot; size=&quot;14&quot; value=&quot;&quot;/&gt;
+                &lt;input id=&quot;searchProducts&quot; type=&quot;submit&quot; value=&quot;Search&quot; /&gt;
+            &lt;/form&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;QuickLinks&quot;&gt;
+        &lt;a href=&quot;/catalog/categories/FISH&quot;&gt;
+            &lt;img src=&quot;/images/sm_fish.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/DOGS&quot;&gt;
+            &lt;img src=&quot;/images/sm_dogs.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/REPTILES&quot;&gt;
+            &lt;img src=&quot;/images/sm_reptiles.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/CATS&quot;&gt;
+            &lt;img src=&quot;/images/sm_cats.gif&quot; /&gt;
+        &lt;/a&gt;
+        &lt;img src=&quot;/images/separator.gif&quot; /&gt;
+        &lt;a href=&quot;/catalog/categories/BIRDS&quot;&gt;
+            &lt;img src=&quot;/images/sm_birds.gif&quot; /&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;div id=&quot;Content&quot;&gt;
+
+    
+
+    &lt;section&gt;
+
+        &lt;div id=&quot;Catalog&quot;&gt;
+
+            &lt;form action=&quot;/login&quot; method=&quot;post&quot;&gt;&lt;input type=&quot;hidden&quot; name=&quot;_csrf&quot; value=&quot;320fbd69-cc4d-41be-ac77-b3056c0a0e07&quot;/&gt;
+                &lt;p&gt;Please enter your username and password.&lt;/p&gt;
+                &lt;p&gt;
+                    Username:&lt;input name=&quot;username&quot; /&gt; &lt;br /&gt;
+                    Password:&lt;input type=&quot;password&quot; name=&quot;password&quot; /&gt;
+                &lt;/p&gt;
+                &lt;input id=&quot;login&quot; type=&quot;submit&quot; value=&quot;Login&quot; /&gt;
+
+            &lt;/form&gt;
+
+            Need a user name and password? &lt;a href=&quot;/accounts/create?form&quot;&gt;Register Now!&lt;/a&gt;
+        &lt;/div&gt;
+
+    &lt;/section&gt;
+&lt;/div&gt;
+
+&lt;div id=&quot;Footer&quot;&gt;
+
+    &lt;div id=&quot;PoweredBy&quot;&gt;
+        &lt;a href=&quot;http://kazuki43zoo.com&quot; target=&quot;homepage&quot;&gt;
+            kazuki43zoo.com
+        &lt;/a&gt;
+    &lt;/div&gt;
+
+    &lt;div id=&quot;Banner&quot;&gt;
+        
+    &lt;/div&gt;
+
+&lt;/div&gt;
+
+
+&lt;/body&gt;
+&lt;/html&gt;</stringProp>
+            <stringProp name="RESPONSE_TIME">${__Random(50,500)}</stringProp>
+            <stringProp name="LATENCY">${__Random(1,50)}</stringProp>
+            <stringProp name="CONNECT">${__Random(1,5)}</stringProp>
+            <stringProp name="URL"></stringProp>
+            <stringProp name="RESULT_CLASS">org.apache.jmeter.samplers.SampleResult</stringProp>
+            <stringProp name="TestPlan.comments">This will extract complete response.</stringProp>
+          </kg.apc.jmeter.samplers.DummySampler>
+          <hashTree>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData_1</stringProp>
+              <stringProp name="RegexExtractor.regex">(?s)(.*?)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Regular Expression Extractor" enabled="true">
+              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.refname">ExtractedData_2</stringProp>
+              <stringProp name="RegexExtractor.regex">(?s)(^.*)</stringProp>
+              <stringProp name="RegexExtractor.template">$1$</stringProp>
+              <stringProp name="RegexExtractor.default">NOTFOUND</stringProp>
+              <stringProp name="RegexExtractor.match_number">1</stringProp>
+            </RegexExtractor>
+            <hashTree/>
+            <BeanShellPostProcessor guiclass="TestBeanGUI" testclass="BeanShellPostProcessor" testname="BeanShell PostProcessor" enabled="true">
+              <stringProp name="filename"></stringProp>
+              <stringProp name="parameters"></stringProp>
+              <boolProp name="resetInterpreter">false</boolProp>
+              <stringProp name="script">vars.put(&quot;Complete_Response&quot;, prev.getResponseDataAsString());</stringProp>
+            </BeanShellPostProcessor>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
+          <boolProp name="displayJMeterProperties">false</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
